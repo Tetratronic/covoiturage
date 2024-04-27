@@ -2,6 +2,37 @@
 
 {% block content %}
 
-<h1>Hello World !</h1>
+<div class="col-md-6 offset-md-3">
+
+
+<!-- Si l'utilisateur est connecte, afficher la page principale -->
+
+{% if user.is_authenticated %}
+
+    <h1>Hello World</h1>
+
+<!-- sinon afficher la page de connexion -->
+
+{% else %}
+
+
+    <h1>Conenxion</h1>
+    <br>
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+            <div class="mb-3">
+              <label for="" class="form-label">Nom d'utilisateur</label>
+              <input type="text" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+
+</div>
+
+{% endif %}
 
 {% endblock %}
