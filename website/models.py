@@ -9,6 +9,7 @@ class Trajet(models.Model):
     origin_city = models.CharField(max_length=100)            #ville de depart
     destination_city = models.CharField(max_length=100)       #destination
     departure_date = models.DateField(max_length=50)          #date de depart
+    departure_time = models.TimeField(default="08:30")
     available_seats = models.CharField(max_length=50)         #places disponibles
     price = models.PositiveSmallIntegerField()                #prix par place
     phone_number = models.CharField(max_length=50)            #numero de telephone

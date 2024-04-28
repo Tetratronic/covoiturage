@@ -4,10 +4,12 @@ from django.contrib import messages
 from .forms import SignUpForm
 from .models import Trajet
 # page d'acceuil
-def home(request):
-    #connecter un utilisateur 
-
+def home(request):  
     trajets = Trajet.objects.all()
+    return render(request, 'home.html' ,{'user': request.user, 'trajets':trajets})
+
+def login_user(request):
+    #connecter un utilisateur 
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -20,8 +22,7 @@ def home(request):
             return redirect('home')
         else:
             messages.success(request, "Erreur, Reessayer")
-        
-    return render(request, 'home.html', {'trajets': trajets})
+    return redirect('login')
 
 #fonction pour se déconnecter
 def logout_user(request):
@@ -43,3 +44,15 @@ def register_user(request):
     else:
          form = SignUpForm()
     return render(request, 'register.html', {'form':form})
+
+
+# Fonction pour Supprimer un trajet
+def delete_trajet(request, pk):
+     trajet = Trajet.objects.get(id=pk)
+     user = request.user
+     if user.first_name == trajet.first_name:
+        trajet.delete
+        return redirect('home')
+     else:
+         messages.success(request,"Non autorisé")
+         return redirect('home')

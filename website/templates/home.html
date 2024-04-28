@@ -1,28 +1,85 @@
 {% extends 'base.html '%}
 
 {% block content %}
+<!-- Style css pour le donnés de chaque trajet -->
+<style>
+
+  .liste-trajets{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ticket-container{
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trajet, .row-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+
+</style>
+
+
 
 <div class="col-md-6 offset-md-3">
 <!-- Si l'utilisateur est connecte, afficher la page principale -->
 
-{% if user.is_authenticated %}
+<div class="liste-trajets">
+  {% if user.is_authenticated %}
+      <h1>Trajets Disponibles</h1>
+      <br>
+      {% if trajets %}
+        {% for trajet in trajets %}
+          <div class="ticket-container">
+            <div class="trajet">
+              <div><b>{{trajet.departure_time}}</b></div>
+              <div><b>{{trajet.origin_city}} </b> ===> <b>{{trajet.destination_city}}</b></div>
+              <div><b>{{trajet.id}}</b><b> MAD</b></div>
+            </div>
+            <hr>
+            <div class="row-2">
+              <div>
+                <div class="info">
+                  <div>{{trajet.departure_date}}</div>
+                  <div>Conducteur: <b>{{trajet.first_name}} </b></div>
+                  <div>{{trajet.phone_number}}</div>
+                  <div>{{trajet.car_model}}</div>
+                </div>
+              </div>
+              <div>
+                <div class="contact">
+                  <div><b>{{trajet.available_seats}} Places</b></div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-success m-auto">Réserver</button>
+          </div>
+        {%endfor%}
+      {% else %}
+        {{'Aucun Trajet trouvé'}}
+      {% endif %}
+</div>
 
-    <h1>Trajets</h1>
-    {% if trajets %}
-      {% for trajet in trajets %}
-      
-      {%endfor%}
-    {% else %}
-      {{'ucin Trajet'}}
-    {% endif %}
 <!-- sinon afficher la page de connexion -->
 
 {% else %}
-
-
     <h1>Connexion</h1>
     <br>
-    <form method="POST" action="{% url 'home' %}">
+    <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
             <div class="mb-3">
               <label for="" class="form-label">Nom d'utilisateur</label>
