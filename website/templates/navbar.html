@@ -1,8 +1,8 @@
 <!-- Ceci est la barre de navigation faite avec Bootstrap, on va l'ajouter au fichier base.html -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Nsafro</a>
+      <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">Covoiturage</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,7 +21,7 @@
               <a class="nav-link" href="{% url 'home' %}">Connexion</a>
             </li>
           {% endif %}
-          
+
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

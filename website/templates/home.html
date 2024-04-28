@@ -3,20 +3,24 @@
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-
-
 <!-- Si l'utilisateur est connecte, afficher la page principale -->
 
 {% if user.is_authenticated %}
 
-    <h1>Hello World</h1>
-
+    <h1>Trajets</h1>
+    {% if trajets %}
+      {% for trajet in trajets %}
+      
+      {%endfor%}
+    {% else %}
+      {{'ucin Trajet'}}
+    {% endif %}
 <!-- sinon afficher la page de connexion -->
 
 {% else %}
 
 
-    <h1>Conenxion</h1>
+    <h1>Connexion</h1>
     <br>
     <form method="POST" action="{% url 'home' %}">
         {% csrf_token %}

@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Trajet
 # page d'acceuil
 def home(request):
     #connecter un utilisateur 
+
+    trajets = Trajet.objects.all()
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -18,7 +21,7 @@ def home(request):
         else:
             messages.success(request, "Erreur, Reessayer")
         
-    return render(request, 'home.html', {})
+    return render(request, 'home.html', {'trajets': trajets})
 
 #fonction pour se déconnecter
 def logout_user(request):
