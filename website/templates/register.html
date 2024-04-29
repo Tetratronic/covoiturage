@@ -2,8 +2,20 @@
 
 {% extends 'base.html'%}
 {% block content %}
+<style>
+	body{
+	  background-image: url("../../media/hero.jpg");
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
 
-<div class="col-md-6 offset-md-3">
+	.card{
+    padding: 40px;
+    border-radius: 20px;
+    border: none;
+  }
+  </style>
+<div class=" card col-md-6 offset-md-3" style="padding: 20px;">
 <h1>S'enregistrer</h1>
 <br>
 <form method="POST" action="">

@@ -2,8 +2,7 @@
 
 {% block content %}
 <!-- Style css pour le donnés de chaque trajet -->
-<style>
-
+<style>  
   .liste-trajets{
     display: flex;
     flex-direction: column;
@@ -28,6 +27,12 @@
     display: flex;
     flex-direction: column;
     gap: 1px;
+  }
+
+  .card{
+    padding: 30px;
+    border-radius: 20px;
+    border: none;
   }
 
 
@@ -78,21 +83,30 @@
 <!-- sinon afficher la page de connexion -->
 
 {% else %}
-    <h1>Connexion</h1>
-    <br>
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-            <div class="mb-3">
-              <label for="" class="form-label">Nom d'utilisateur</label>
-              <input type="text" class="form-control" name="username" required>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-              <input type="password" class="form-control" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Se connecter</button>
-    </form>
 
+<style>
+  body{
+    background-image: url("../../media/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+
+<div class="card">
+  <h1>Connexion</h1>
+  <br>
+  <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="" class="form-label">Nom d'utilisateur</label>
+      <input type="text" class="form-control" name="username" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+  </form>
 </div>
 
 {% endif %}

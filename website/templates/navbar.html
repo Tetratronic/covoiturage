@@ -1,3 +1,6 @@
+
+
+
 <style>
   .profile-img{
     width: 30px;
@@ -5,16 +8,27 @@
     border-radius: 50%;
   }
 
+  .logo{
+    width: 50px;
+    height: 50px;
+  }
+
+  .navbar-brand{
+    font-family: "Gruppo", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
 </style>
-
-
-
 
 <!-- Ceci est la barre de navigation faite avec Bootstrap, on va l'ajouter au fichier base.html -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
     <div class="container-fluid">
-      <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">Covoiturage</a>
+      <div>
+        <a href=""><img class="logo" src="../../media/icon.png" alt=""></a>
+        <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">COVOITURAGE</a>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
