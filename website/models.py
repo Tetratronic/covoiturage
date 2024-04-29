@@ -1,10 +1,10 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Modeliser les Trajets dans la base de données
 
 class Trajet(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    first_name = models.CharField(max_length=50)              #nom
+    user = models.ForeignKey(User,on_delete=models.CASCADE)  #Posteur du trajet
     last_name = models.CharField(max_length=50)               #prenom
     origin_city = models.CharField(max_length=100)            #ville de depart
     destination_city = models.CharField(max_length=100)       #destination

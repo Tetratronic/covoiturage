@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Trajet
 from django import forms
 
 class SignUpForm(UserCreationForm):
@@ -32,3 +33,29 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = ''  
         
+
+
+class AddTrajetForm(forms.ModelForm):
+    class Meta:
+        model = Trajet
+        fields = ['origin_city', 'destination_city', 'departure_date', 'departure_time', 'available_seats', 'price', 'phone_number', 'car_model']
+        labels = {
+                "origin_city": "",
+                "destination_city": "",
+                "departure_date": "",
+                "departure_time": "",
+                "available_seats": "",
+                "price": "",
+                "phone_number": "",
+                "car_model": "",
+            }
+        widgets = {
+            'origin_city': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ville de Départ'}),
+            'destination_city': forms.TextInput(attrs={'class':'form-control', 'placeholder':' Ville d\'Arrivée'}),
+            'departure_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':'Date', 'type':'date'}),
+            'departure_time': forms.TimeInput(attrs={'class':'form-control', 'placeholder':'Heure', 'type':'time'}),
+            'available_seats': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Nombre de places'}),
+            'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Prix'}),
+            'phone_number': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numéro de téléphone'}),
+            'car_model': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Modèle du véhicule'}),	
+        }
