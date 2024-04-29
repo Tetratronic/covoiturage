@@ -57,5 +57,5 @@ class AddTrajetForm(forms.ModelForm):
             'available_seats': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Nombre de places'}),
             'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Prix'}),
             'phone_number': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numéro de téléphone'}),
-            'car_model': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Modèle du véhicule'}),	
+            'car_model': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Modèle du véhicule'}),
         }

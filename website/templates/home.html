@@ -48,13 +48,14 @@
             <div class="trajet">
               <div><b>{{trajet.departure_time}}</b></div>
               <div><b>{{trajet.origin_city}} </b> ===> <b>{{trajet.destination_city}}</b></div>
-              <div><b>{{trajet.id}}</b><b> MAD</b></div>
+              <div><b>{{trajet.price}}</b><b> MAD</b></div>
             </div>
             <hr>
             <div class="row-2">
               <div>
                 <div class="info">
                   <div>{{trajet.departure_date}}</div>
+                  <img src="{{ trajet.user.profile_pic.url }}" width = '300'/>
                   <div>Conducteur: <b>{{trajet.user.first_name}} </b></div>
                   <div>{{trajet.phone_number}}</div>
                   <div>{{trajet.car_model}}</div>

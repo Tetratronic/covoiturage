@@ -6,7 +6,7 @@ from .forms import SignUpForm, AddTrajetForm
 from .models import Trajet
 # page d'acceuil
 def home(request):  
-    trajets = Trajet.objects.order_by('-created_at')
+    trajets = Trajet.objects.order_by('-created_at')[:10] #Afficher les 10 premiers trajets
     return render(request, 'home.html' ,{'user': request.user, 'trajets':trajets})
 
 def login_user(request):
@@ -33,7 +33,7 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == 'POST':
-             form = SignUpForm(request.POST)
+             form = SignUpForm(request.POST, request.FILES)
              if form.is_valid():
                 form.save()
                 username = form.cleaned_data['username']
@@ -53,7 +53,7 @@ def add_trajet(request):
                 Trajet = form.save(commit=False)
                 Trajet.user= request.user
                 Trajet.save()
-                messages.success(request, "Inscription réussie")
+                messages.success(request, "Opération réussie")
                 return redirect('home')
         else:
             form = AddTrajetForm()

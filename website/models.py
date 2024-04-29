@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save  
 # Modeliser les Trajets dans la base de données
 
 class Trajet(models.Model):
@@ -16,4 +17,4 @@ class Trajet(models.Model):
     car_model = models.CharField(max_length=50)               #Modele de la voiture
 
     def __str__(self) -> str:
-        return(f"{self.first_name}{self.last_name}")
+        return(f"{self.origin_city}{self.destination_city}")
