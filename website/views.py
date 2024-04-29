@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, AddTrajetForm
+from .forms import SignUpForm, AddTrajetForm, UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.decorators import login_required
 from .models import Trajet
 
@@ -76,4 +76,17 @@ def delete_trajet(request, pk):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Profil mis a jour avec succes !')
+            return redirect(to='users-profile')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
