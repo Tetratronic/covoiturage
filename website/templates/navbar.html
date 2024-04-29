@@ -1,3 +1,15 @@
+<style>
+  .profile-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+</style>
+
+
+
+
 <!-- Ceci est la barre de navigation faite avec Bootstrap, on va l'ajouter au fichier base.html -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
@@ -13,7 +25,10 @@
             <a class="nav-link" href="{% url 'add_trajet' %}"><b>Ajouter un Trajet</b></a>
           </li>
             <li class="nav-item">
-              <a class="nav-link" href=""><b>{{user.username}}</b></a>
+              <a class="nav-link" href=""><b> {{user.username}}</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=""><img class="profile-img" src="{{user.profile.profile_pic.url}}"></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">| Déconnexion</a>

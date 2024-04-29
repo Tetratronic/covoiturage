@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, AddTrajetForm
-
+from django.contrib.auth.decorators import login_required
 from .models import Trajet
+
 # page d'acceuil
 def home(request):  
     trajets = Trajet.objects.order_by('-created_at')[:10] #Afficher les 10 premiers trajets
@@ -33,7 +34,7 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == 'POST':
-             form = SignUpForm(request.POST, request.FILES)
+             form = SignUpForm(request.POST)
              if form.is_valid():
                 form.save()
                 username = form.cleaned_data['username']
@@ -71,3 +72,8 @@ def delete_trajet(request, pk):
      else:
          messages.success(request,"Non autorisé")
          return redirect('home')
+
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
