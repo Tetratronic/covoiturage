@@ -63,11 +63,11 @@ class AddTrajetForm(forms.ModelForm):
 
 
 class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(label="",max_length=100,required=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label="",required=True, widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'}))
-    first_name = forms.CharField(label="",required=True,max_length="20", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Prénom'}))
-    last_name = forms.CharField(label="",required=True,max_length="20", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nom'}))
-    phone_number = forms.CharField(label='',required=True,widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numéro de téléphone'}))
+    username = forms.CharField(label="",max_length=100,required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(label="",required=False, widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'}))
+    first_name = forms.CharField(label="",required=False,max_length="20", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Prénom'}))
+    last_name = forms.CharField(label="",required=False,max_length="20", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nom'}))
+    phone_number = forms.CharField(label='',required=False,widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numéro de téléphone'}))
 
     class Meta:
         model = User

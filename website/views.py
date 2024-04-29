@@ -4,6 +4,9 @@ from django.contrib import messages
 from .forms import SignUpForm, AddTrajetForm, UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.decorators import login_required
 from .models import Trajet
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 
 # page d'acceuil
 def home(request):  
@@ -24,7 +27,7 @@ def login_user(request):
             return redirect('home')
         else:
             messages.success(request, "Erreur, Reessayer")
-    return redirect('login')
+    return redirect('home')
 
 #fonction pour se déconnecter
 def logout_user(request):
@@ -90,3 +93,9 @@ def profile(request):
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
     return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'change_password.html'
+    success_message = "Mot de passe changé avec succes"
+    success_url = reverse_lazy('home')
