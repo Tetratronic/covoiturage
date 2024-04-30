@@ -35,6 +35,11 @@
     border: none;
   }
 
+  .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
 
 </style>
 
@@ -60,9 +65,9 @@
               <div>
                 <div class="info">
                   <div>{{trajet.departure_date}}</div>
-                  <img src="{{ trajet.user.profile_pic.url }}" width = '300'/>
+                  <img class="avatar" src="{{ trajet.user.profile.profile_pic.url }}"/>
                   <div>Conducteur: <b>{{trajet.user.first_name}} </b></div>
-                  <div>{{trajet.phone_number}}</div>
+                  <div><b>{{trajet.phone_number}}</b></div>
                   <div>{{trajet.car_model}}</div>
                 </div>
               </div>
@@ -72,7 +77,6 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-success m-auto">Réserver</button>
           </div>
         {%endfor%}
       {% else %}
